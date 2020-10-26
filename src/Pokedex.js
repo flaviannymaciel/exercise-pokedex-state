@@ -5,26 +5,18 @@ import Pokemon from './Pokemon';
 class Pokedex extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-        pokemonIndex: 0,
-        filteredType: 'all'
-    };
-  }
-    
-  filterPokemons(filteredType) {
-    this.setState({filteredType, pokemonIndex: 0});
+      arrayPokemon: 0
+    }
   }
 
   render() {
     const { pokemons } = this.props;
-    const pokemon = filteredPokemons[this.state.pokemonIndex];
+    const { arrayPokemon } = this.state;
     return (
       <div className="pokedex">
-        <Pokemon pokemon={pokemon} />
-        <Button  onClick={() => this.filterPokemons('all')}>All</Button>
-        <Button />
-        <Button />
+        <Pokemon pokemon={pokemons[arrayPokemon]} />
+        <Button onClick={() => this.setState(e =>({arrayPokemon: e.arrayPokemon + 1}))}>All</Button>
       </div>
     );
   }
